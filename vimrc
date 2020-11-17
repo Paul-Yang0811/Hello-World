@@ -21,6 +21,8 @@ set smartcase
 set cursorline
 "set cursorcolumn
 
+" Turn off cursor blinking: just need to turn off => Settings -> Keyboard -> CursorBlinking
+"set gcr=a:block-blinkon0
 
 " set for vim-cursorword
 set list lcs=tab:\|\ 
@@ -33,65 +35,18 @@ let g:NERDTreeWinPos="right"
 let g:SuperTabMappingForward = "<tab>"
 let g:SuperTabMappingBackward= "s-tab"
 
-
-"if filereadable("cscope.out") " 若当前目录下存在cscope数据库，添加该数据库到vim
-"	cs add cscope.out
-"elseif $CSCOPE_DB != "" " 否则只要环境变量CSCOPE_DB不为空，则添加其指定的数据库到vim
-"	cs add $CSCOPE_DB
-"endif
-
-" Use both cscope and ctag
-"set cscopetag
-
-" Show msg when cscope db added
-"set cscopeverbose
-
-" Use tags for definition search first
-"set cscopetagorder=1
-
-" Use quickfix window to show cscope results
-"set cscopequickfix=s-,c-,d-,i-,t-,e-
-"
+nmap <F4> :TlistToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" cscope 自动加载cscope.out文件
+" quickfix setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("cscope")
-    set csprg=/usr/bin/cscope
-    set csto=0
-    set cst
-    set csverb
-    set cspc=3
-    "add any database in current dir
-    if filereadable("cscope.out")
-        cs add cscope.out
-    "else search cscope.out elsewhere
-    else
-        let cscope_file=findfile("cscope.out",".;")
-        let cscope_pre=matchstr(cscope_file,".*/")
-        if !empty(cscope_file) && filereadable(cscope_file)
-            set nocsverb
-            exe "cs add" cscope_file cscope_pre
-            set csverb
-        endif
-    endif
-endif
 
+" 设置 F2 打开/关闭 Quickfix 窗口,高度为15
+nnoremap <F2> :call asyncrun#quickfix_toggle(15)<cr>
 
-nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+"参数 `-raw` 表示输出不用匹配错误检测模板 (errorformat) ，直接原始内容输出到 quickfix 窗口
+nnoremap <F5> :AsyncRun -raw<space>
 
-nmap <c-\>q :copen<CR>
-nmap <c-\>qc :cclose<CR>
-
-nmap <F2> :copen<CR>
-nmap <F3> :cclose<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plug-in "
@@ -105,9 +60,16 @@ Plug 'Yggdroot/LeaderF'
 Plug 'vim-scripts/a.vim'
 Plug 'vim-scripts/taglist.vim'
 Plug 'brookhong/cscope.vim'
-Plug 'yggdroot/indentline'
+"Plug 'chazy/cscope_maps'
+Plug 'steffanc/cscopemaps.vim'
 Plug 'vim-scripts/autoload_cscope.vim'
+Plug 'yggdroot/indentline'
 Plug 'itchyny/vim-cursorword'
+"Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/asyncrun.vim'
+"Plug 'w0rp/ale'
+"Plug 'kien/rainbow_parentheses.vim'
+"Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 
@@ -118,6 +80,9 @@ call plug#end()
 
 colorscheme gruvbox
 set background=dark    " Setting dark mode
+"set bg=light
+"set guioptions=                 "去掉两边的scrollbar
+"set guifont=Monaco:h17          "设置字体和字的大小
 
 " change function color
 autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
