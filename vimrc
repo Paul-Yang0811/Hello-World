@@ -22,17 +22,17 @@ set cursorline
 "set cursorcolumn
 
 
+" set for vim-cursorword
 set list lcs=tab:\|\ 
 
 se t_Co=256
 set tags=./tags;,tags
 let g:NERDTreeWinPos="right"
 
+" set for supertab
 let g:SuperTabMappingForward = "<tab>"
 let g:SuperTabMappingBackward= "s-tab"
 
-nmap <F2> :copen<CR>
-nmap <F2> :cclose<CR>
 
 "if filereadable("cscope.out") " 若当前目录下存在cscope数据库，添加该数据库到vim
 "	cs add cscope.out
@@ -78,6 +78,20 @@ if has("cscope")
 endif
 
 
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+
+nmap <c-\>q :copen<CR>
+nmap <c-\>qc :cclose<CR>
+
+nmap <F2> :copen<CR>
+nmap <F3> :cclose<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plug-in "
