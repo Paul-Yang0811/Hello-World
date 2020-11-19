@@ -35,7 +35,6 @@ let g:NERDTreeWinPos="right"
 let g:SuperTabMappingForward = "<tab>"
 let g:SuperTabMappingBackward= "s-tab"
 
-<<<<<<< HEAD
 nmap <F4> :TlistToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -48,20 +47,6 @@ nnoremap <F2> :call asyncrun#quickfix_toggle(15)<cr>
 "参数 `-raw` 表示输出不用匹配错误检测模板 (errorformat) ，直接原始内容输出到 quickfix 窗口
 nnoremap <F5> :AsyncRun -raw<space>
 
-=======
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" cscope setting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-"" Use quickfix window to show cscope results
-"set cscopequickfix=s-,c-,d-,i-,t-,e-
-"
-nmap <c-\>w :copen<CR>
-nmap <c-\>ww :cclose<CR>
-
-nmap <F2> :copen<CR>
-nmap <F3> :cclose<CR>
->>>>>>> 9df81228fded20fefd6b865c548ec5599a42fb45
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plug-in "
@@ -77,10 +62,6 @@ Plug 'vim-scripts/taglist.vim'
 Plug 'brookhong/cscope.vim'
 "Plug 'chazy/cscope_maps'
 Plug 'steffanc/cscopemaps.vim'
-<<<<<<< HEAD
-=======
-Plug 'yggdroot/indentline'
->>>>>>> 9df81228fded20fefd6b865c548ec5599a42fb45
 Plug 'vim-scripts/autoload_cscope.vim'
 Plug 'yggdroot/indentline'
 Plug 'itchyny/vim-cursorword'
